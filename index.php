@@ -11,17 +11,27 @@
 <h1>Encuesta de HLC</h1>
 <form>
     <?php
+
+    $valores =[
+        1 => 'Nada',
+        2 => 'Poco',
+        3 => 'Regular',
+        4 => 'Mucho',
+        5 => 'Todo'
+
+
+    ];
+
     for ($pregunta = 1; $pregunta <= 5; $pregunta++){
-        echo <<<PREGUNTA
-        Pregunta 1
-        <input type="radio" name="pr$pregunta" value="1" /> 1
-        <input type="radio" name="pr$pregunta" value="2" /> 2
-        <input type="radio" name="pr$pregunta" value="3" /> 3
-        <input type="radio" name="pr$pregunta" value="4" /> 4
-        <input type="radio" name="pr$pregunta" value="5" /> 5
-        <br/>
-PREGUNTA;
+        echo "Pregunta $pregunta";
+    
+        foreach ($valores as $valor => $texto){
+            echo  "<input type='radio' id='id$id' name='pr$pregunta' value='$valor'/><label for='id$id'>$texto</label>";
+            $id++;
     }
+        echo "<br/>";
+    }
+
 ?>
 
     <button type="submit">Votar</button>
