@@ -1,3 +1,32 @@
+<?php
+
+session_name('encuesta');
+session_start();
+
+//procesamiento del formulario
+
+if (isset($_POST['votar'])){
+    if (!isset($_SESSION['encuestas'])){
+        $_SESSION['encuestas'] = 0;
+        $_SESSION['suma1'] = 0;
+        $_SESSION['suma2'] = 0;
+        $_SESSION['suma3'] = 0;
+        $_SESSION['suma4'] = 0;
+        $_SESSION['suma5'] = 0;
+
+    }
+    $_SESSION['suma1'] = $_SESSION['suma1'] + $_POST['pr1'];
+    $_SESSION['suma2'] = $_SESSION['suma2'] + $_POST['pr2'];
+    $_SESSION['suma3'] = $_SESSION['suma3'] + $_POST['pr3'];
+    $_SESSION['suma4'] = $_SESSION['suma4'] + $_POST['pr4'];
+    $_SESSION['suma5'] = $_SESSION['suma5'] + $_POST['pr5'];
+    $_SESSION['encuestas']++;
+}
+
+    var_dump($_SESSION);
+
+?>
+
 <!doctype html>
 <html lang="es" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -9,7 +38,7 @@
 </head>
 <body>
 <h1>Encuesta de HLC</h1>
-<form method="'post" action="index.php">
+<form method="post" action="index.php">
     <?php
 
     $valores =[
@@ -34,7 +63,7 @@
 
 ?>
 
-    <button type="submit">Votar</button>
+    <button type="submit" name="votar">Votar</button>
 </form>
 </body>
 </html>
