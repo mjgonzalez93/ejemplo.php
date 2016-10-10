@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Encuesta de HLC</h1>
-<form>
+<form method="'post" action="index.php">
     <?php
 
     $valores =[
