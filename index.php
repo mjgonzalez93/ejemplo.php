@@ -3,10 +3,12 @@
 session_name('encuesta');
 session_start();
 
+$error = false;
+
 //procesamiento del formulario
 
-if (isset($_POST['votar'])){
-    if (!isset($_SESSION['encuestas'])){
+if (isset($_POST['votar'])) {
+    if (!isset($_SESSION['encuestas'])) {
         $_SESSION['encuestas'] = 0;
         $_SESSION['suma1'] = 0;
         $_SESSION['suma2'] = 0;
@@ -15,12 +17,22 @@ if (isset($_POST['votar'])){
         $_SESSION['suma5'] = 0;
 
     }
+
+
+
+    if (isset($_POST['pr1']) && isset($_POST['pr2']) && isset($_POST['pr3'])
+        && isset($_POST['pr4']) && isset($_POST['pr5'])) {
+
     $_SESSION['suma1'] = $_SESSION['suma1'] + $_POST['pr1'];
     $_SESSION['suma2'] = $_SESSION['suma2'] + $_POST['pr2'];
     $_SESSION['suma3'] = $_SESSION['suma3'] + $_POST['pr3'];
     $_SESSION['suma4'] = $_SESSION['suma4'] + $_POST['pr4'];
     $_SESSION['suma5'] = $_SESSION['suma5'] + $_POST['pr5'];
     $_SESSION['encuestas']++;
+
+    }else{
+        $error = true;
+    }
 }
 
     var_dump($_SESSION);
@@ -38,6 +50,13 @@ if (isset($_POST['votar'])){
 </head>
 <body>
 <h1>Encuesta de HLC</h1>
+<?php if($error){
+
+echo "<h3>Escriba todas las opciones</h3>";
+
+}
+
+?>
 <form method="post" action="index.php">
     <?php
 
