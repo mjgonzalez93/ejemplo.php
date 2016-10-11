@@ -28,7 +28,10 @@ if (isset($_POST['votar'])) {
     $_SESSION['suma3'] = $_SESSION['suma3'] + $_POST['pr3'];
     $_SESSION['suma4'] = $_SESSION['suma4'] + $_POST['pr4'];
     $_SESSION['suma5'] = $_SESSION['suma5'] + $_POST['pr5'];
+
     $_SESSION['encuestas']++;
+
+    header('Location: gracias.php', true, 302);
 
     }else{
         $error = true;
@@ -52,7 +55,7 @@ if (isset($_POST['votar'])) {
 <h1>Encuesta de HLC</h1>
 <?php if($error){
 
-echo "<h3>Escriba todas las opciones</h3>";
+    echo "<h3>Escriba todas las opciones</h3>";
 
 }
 
